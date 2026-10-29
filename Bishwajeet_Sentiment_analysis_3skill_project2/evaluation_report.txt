@@ -1,0 +1,54 @@
+# Sentiment Analysis - Evaluation Report
+
+## 1. Objective
+The objective of this project is to classify customer reviews into Positive, Negative, and Neutral sentiments using Natural Language Processing and Machine Learning.
+
+## 2. Dataset
+- Total original reviews: 10,000
+- Unique cleaned review texts: 300
+- Sentiment classes: Positive, Negative, Neutral
+- Unique reviews per class: 100
+
+## 3. Data Preprocessing
+- Checked missing values and duplicate records.
+- Converted review text to lowercase.
+- Normalized extra whitespace.
+- Identified repeated review texts.
+- Removed duplicate cleaned review texts for the model evaluation split.
+
+## 4. Models Used
+- Logistic Regression with TF-IDF
+- Multinomial Naive Bayes with TF-IDF
+
+## 5. Evaluation Results
+On the held-out test set of 60 unique reviews, both initial models achieved:
+- Accuracy: 100%
+- Precision: 100%
+- Recall: 100%
+- F1-score: 100%
+
+The confusion matrix showed 20 correct predictions for each sentiment class.
+
+## 6. Cross-Validation
+Five-fold cross-validation on the training portion produced the following macro F1-scores:
+- Logistic Regression: approximately 98.75%
+- Multinomial Naive Bayes: approximately 99.17%
+
+## 7. Hyperparameter Tuning
+GridSearchCV was applied to the Logistic Regression pipeline.
+
+Best parameters:
+- `model__C`: 1
+- `tfidf__max_features`: 3000
+- `tfidf__ngram_range`: (1, 2)
+
+Best cross-validation macro F1-score: approximately 99.58%.
+
+## 8. Limitations
+The original dataset contains 10,000 rows but only 300 unique cleaned review texts. Therefore, the evaluation results should not be interpreted as proof of perfect performance on new real-world reviews. A larger dataset containing more varied, independent reviews is needed for a stronger assessment.
+
+## 9. Application
+A Streamlit web application was created to accept a review and display its predicted sentiment.
+
+## 10. Conclusion
+The project implements an end-to-end sentiment analysis workflow, including data exploration, text preprocessing, TF-IDF feature extraction, model comparison, cross-validation, hyperparameter tuning, model saving, and an interactive web application.
